@@ -7,4 +7,3 @@ public interface IngredientService {
 
     Ingredients getIngredient(int id);
 }
-
