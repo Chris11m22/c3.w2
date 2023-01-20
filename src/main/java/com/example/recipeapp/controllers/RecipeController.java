@@ -3,10 +3,8 @@ package com.example.recipeapp.controllers;
 import impl.RecipeServiceImpl;
 import model.Ingredients;
 import model.Recipe;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import services.RecipeService;
 
 import java.util.List;
 
@@ -14,7 +12,7 @@ import java.util.List;
 @RequestMapping("/recipe")
 public class RecipeController {
 
-    private RecipeServiceImpl recipeService;
+    private RecipeService recipeService;
 
     public RecipeController(RecipeServiceImpl recipeService) {
         this.recipeService = recipeService;
@@ -26,8 +24,7 @@ public class RecipeController {
     }
 
     @GetMapping("/add")
-    public String addRecipe(@RequestParam String name, @RequestParam int min, @RequestParam List<Ingredients> ingrList, @RequestParam List<String> steps) {
-        recipeService.addRecipe(name, min, ingrList, steps);
-        return "Рецепт " + name + " добавлен";
+    public String addRecipe(@RequestBody Recipe recipe) {
+        return  recipeService.addRecipe(recipe) ;
     }
 }

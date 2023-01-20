@@ -1,12 +1,10 @@
 package impl;
 
-import model.Ingredients;
 import model.Recipe;
 import org.springframework.stereotype.Service;
 import services.RecipeService;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -15,9 +13,10 @@ public class RecipeServiceImpl implements RecipeService {
     public static int id = 0;
 
     @Override
-    public void addRecipe(String nameRecipe, int minutes, List<Ingredients> ingredientsList, List<String> steps) {
-        recipeMap.put(id++, new Recipe(nameRecipe, minutes, ingredientsList, steps));
+    public void addRecipe(Recipe recipe) {
+        recipeMap.put(id++, new Recipe(recipe));
     }
+
 
     @Override
     public Recipe getRecipe(int id) {

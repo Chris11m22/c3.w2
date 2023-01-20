@@ -13,9 +13,10 @@ public class IngredientServiceImpl implements IngredientService {
     Map<Integer, Ingredients> ingredientsMap = new LinkedHashMap<>();
     public static int id = 0;
 
+
     @Override
-    public void addIngredient(String nameIngredient, int count, String units) {
-        ingredientsMap.put(id++, new Ingredients(nameIngredient, count, units));
+    public void addIngredient(Ingredients ingredients) {
+        ingredientsMap.put(id++, new Ingredients(ingredients));
     }
 
     @Override

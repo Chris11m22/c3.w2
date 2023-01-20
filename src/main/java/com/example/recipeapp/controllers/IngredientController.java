@@ -2,18 +2,16 @@ package com.example.recipeapp.controllers;
 
 import impl.IngredientServiceImpl;
 import model.Ingredients;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import services.IngredientService;
 
 @RestController
 @RequestMapping("/ingredients")
 public class IngredientController {
 
-    private IngredientServiceImpl ingredientService;
+    private final IngredientService ingredientService;
 
-    public IngredientController(IngredientServiceImpl ingredientService) {
+    public IngredientController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
     }
 
@@ -23,9 +21,8 @@ public class IngredientController {
     }
 
     @GetMapping("/add")
-    public String addIngredient(@RequestParam String name, @RequestParam int count, @RequestParam String units) {
-        ingredientService.addIngredient(name, count, units);
-        return "Ингридиент " + name + " добавлен";
+    public String addIngredient(@RequestBody Ingredients ingredients ) {
+        return ingredientService.addIngredient (ingredients);
 
     }
 }
