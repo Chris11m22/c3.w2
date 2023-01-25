@@ -10,14 +10,16 @@ import java.util.Map;
 @Service
 public class IngredientServiceImpl implements IngredientService {
 
-    Map<Integer, Ingredients> ingredientsMap = new LinkedHashMap<>();
+    public final Map<Integer, Ingredients> ingredientsMap = new LinkedHashMap<>();
     public static int id = 0;
 
 
     @Override
-    public void addIngredient(Ingredients ingredients) {
-        ingredientsMap.put(id++, new Ingredients(ingredients));
+    public Ingredients addIngredient(Ingredients ingredients) {
+        ingredientsMap.put(id++, ingredients);
+        return ingredients;
     }
+
 
     @Override
     public Ingredients getIngredient(int id) {
@@ -26,5 +28,15 @@ public class IngredientServiceImpl implements IngredientService {
         } else {
             throw new IllegalArgumentException("Данного ингредиента не существует.");
         }
+    }
+
+    @Override
+    public Ingredients editIngredient(int id, Ingredients ingredients) {
+        return ingredientsMap.put(id,ingredients);
+    }
+
+    @Override
+    public Ingredients deleteIngredient(int id) {
+        return ingredientsMap.remove(id);
     }
 }

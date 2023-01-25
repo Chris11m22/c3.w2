@@ -9,14 +9,14 @@ import java.util.Map;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
-    Map<Integer, Recipe> recipeMap = new LinkedHashMap<>();
+    public final Map<Integer, Recipe> recipeMap = new LinkedHashMap<>();
     public static int id = 0;
 
     @Override
-    public void addRecipe(Recipe recipe) {
-        recipeMap.put(id++, new Recipe(recipe));
+    public Recipe addRecipe(Recipe recipe) {
+        recipeMap.put(id++,recipe);
+        return recipe;
     }
-
 
     @Override
     public Recipe getRecipe(int id) {
@@ -25,6 +25,16 @@ public class RecipeServiceImpl implements RecipeService {
         } else {
             throw new IllegalArgumentException("Рецепта с данным id не существует.");
         }
+    }
+
+    @Override
+    public Recipe editRecipe(int id, Recipe newRecipe) {
+        return recipeMap.put(id,newRecipe);
+    }
+
+    @Override
+    public Recipe deleteRecipe(int counter) {
+        return recipeMap.remove(id);
     }
 }
 

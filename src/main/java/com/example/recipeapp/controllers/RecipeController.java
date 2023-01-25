@@ -1,20 +1,17 @@
 package com.example.recipeapp.controllers;
 
-import impl.RecipeServiceImpl;
-import model.Ingredients;
 import model.Recipe;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import services.RecipeService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/recipe")
 public class RecipeController {
 
-    private RecipeService recipeService;
+    private final RecipeService recipeService;
 
-    public RecipeController(RecipeServiceImpl recipeService) {
+    public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
 
@@ -24,7 +21,20 @@ public class RecipeController {
     }
 
     @GetMapping("/add")
-    public String addRecipe(@RequestBody Recipe recipe) {
-        return  recipeService.addRecipe(recipe) ;
+    public ResponseEntity<Recipe> addRecipe(@RequestBody Recipe recipe) {
+        recipeService.addRecipe(recipe);
+        return ResponseEntity.ok(recipe);
+    }
+
+    @PostMapping("/edit/{id}")
+    public ResponseEntity<Recipe> editRecipe(@PathVariable int id, @RequestBody Recipe recipe) {
+        recipeService.editRecipe(id, recipe);
+        return ResponseEntity.ok().body(recipe);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Recipe> deleteRecipe(@PathVariable int id) {
+        recipeService.deleteRecipe(id);
+        return ResponseEntity.ok().build();
     }
 }
