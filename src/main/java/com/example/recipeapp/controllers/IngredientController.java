@@ -1,5 +1,6 @@
 package com.example.recipeapp.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import model.Ingredients;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +8,7 @@ import services.IngredientService;
 
 @RestController
 @RequestMapping("/ingredients")
+@Tag(name = "Ингредиенты", description = "CRUD операции")
 public class IngredientController {
 
     private final IngredientService ingredientService;
@@ -15,23 +17,23 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    @GetMapping("/get")
-    public Ingredients getIngredient(@RequestParam int id) {
+    @GetMapping()
+    public Ingredients getIngredient(@RequestBody int id) {
         return ingredientService.getIngredient(id);
     }
 
-    @GetMapping("/add")
+    @GetMapping()
     public ResponseEntity<Ingredients>  addIngredient(@RequestBody Ingredients ingredients ) {
         ingredientService.addIngredient(ingredients);
         return ResponseEntity.ok().build();
     }
-    @PostMapping("/edit/{id}")
+    @PostMapping()
     public ResponseEntity<Ingredients> editIngredient (@PathVariable int id, @RequestBody Ingredients ingredient) {
         ingredientService.editIngredient(id, ingredient);
         return ResponseEntity.ok().body(ingredient);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping()
     public ResponseEntity<Ingredients> deleteIngredient(@PathVariable int id) {
         ingredientService.deleteIngredient(id);
         return ResponseEntity.ok().build();
