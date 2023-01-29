@@ -17,6 +17,7 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
+
     @GetMapping()
     public Ingredients getIngredient(@RequestBody int id) {
         return ingredientService.getIngredient(id);

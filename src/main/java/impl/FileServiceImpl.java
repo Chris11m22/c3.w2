@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import services.FileService;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,8 +36,19 @@ public class FileServiceImpl implements FileService {
         }
 
     }
-
-    private boolean cleanData() {
+    @Override
+    public File getDataFile(){
+        return new File(dataFilePath +"/" + dataFileName);
+    }
+    public Path createFile(String suffix ){
+        try {
+            return Files.createTempFile(Path.of(dataFilePath),"tempFile",suffix);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+@Override
+    public boolean cleanData() {
         try {
             Path path = Path.of(dataFilePath);
             Files.deleteIfExists(path);
