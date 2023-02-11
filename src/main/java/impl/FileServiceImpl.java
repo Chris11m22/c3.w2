@@ -2,7 +2,7 @@ package impl;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import services.FileService;
+import com.example.recipeapp.services.FileService;
 
 import java.io.File;
 import java.io.IOException;

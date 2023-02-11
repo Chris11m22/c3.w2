@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import model.Recipe;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import services.RecipeService;
+import com.example.recipeapp.services.RecipeService;
 
 @RestController
 @RequestMapping("/recipe")

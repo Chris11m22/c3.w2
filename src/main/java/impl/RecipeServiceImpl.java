@@ -5,8 +5,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Recipe;
 import org.springframework.stereotype.Service;
-import services.FileService;
-import services.RecipeService;
+import com.example.recipeapp.services.FileService;
+import com.example.recipeapp.services.RecipeService;
 
 import javax.annotation.PostConstruct;
 import java.util.LinkedHashMap;

@@ -1,4 +1,4 @@
-package services;
+package com.example.recipeapp.services;
 
 import model.Ingredients;
 
