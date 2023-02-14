@@ -5,75 +5,100 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Ingredients;
 import org.springframework.stereotype.Service;
-import com.example.recipeapp.services.FileService;
+import com.example.recipeapp.services.FilesService;
 import com.example.recipeapp.services.IngredientService;
 
 import javax.annotation.PostConstruct;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
 @Service
 public class IngredientServiceImpl implements IngredientService {
-    final private FileService fileService;
+    final private FilesService filesService;
+    private static Map<Integer, Ingredients> ingredientsMap = new LinkedHashMap<>();
+    public static Integer idIngr = 0;
 
-    public final Map<Integer, Ingredients> ingredientsMap = new LinkedHashMap<>();
-    public static int id = 0;
-
-    public IngredientServiceImpl(FileService fileService) {
-        this.fileService = fileService;
+    public IngredientServiceImpl(FilesService filesService) {
+        this.filesService = filesService;
     }
+
     @PostConstruct
     private void init(){
-
+        readFromFileIngr();
     }
 
     @Override
-    public Ingredients addIngredient(Ingredients ingredients) {
-        ingredientsMap.put(id++, ingredients);
-        saveToFile();
-        return ingredients;
+    public Ingredients putNewIngr(Ingredients ingredient) {
+        ingredientsMap.put(idIngr++,ingredient);
+        saveToFileIngr();
+        return ingredient;
     }
 
-
-
     @Override
-    public Ingredients getIngredient(int id) {
-        if (ingredientsMap.containsKey(id) && id > 0) {
+    public Ingredients getIngr(Integer id) {
+        if(ingredientsMap.get(id) != null){
             return ingredientsMap.get(id);
-        } else {
-            throw new IllegalArgumentException("Данного ингредиента не существует.");
         }
+        return null;
     }
 
     @Override
-    public Ingredients editIngredient(int id, Ingredients ingredients) {
-        saveToFile();
-        return ingredientsMap.put(id, ingredients);
+    public Map<Integer, Ingredients> getAllIngr(){
+        return ingredientsMap;
     }
 
     @Override
-    public Ingredients deleteIngredient(int id) {
-        return ingredientsMap.remove(id);
+    public Ingredients editIngr(Integer id, Ingredients ingredient){
+        if (!ingredientsMap.containsKey(id)) {
+            throw new NoSuchElementException("Ингредиент с данным id не найден");
+        }
+        ingredientsMap.put(id, ingredient);
+        saveToFileIngr();
+        return ingredient;
     }
 
-    private void saveToFile() {
+    @Override
+    public boolean deleteIngr(Integer id){
+        if(ingredientsMap.containsKey(id)){
+            ingredientsMap.remove(id);
+            saveToFileIngr();
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public boolean deleteIngr(Ingredients ingredients){
+        if(ingredientsMap.containsValue(ingredients)){
+            for (Map.Entry<Integer, Ingredients>entry : ingredientsMap.entrySet()) {
+                Integer id = entry.getKey();
+                ingredientsMap.remove(id);
+                saveToFileIngr();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void saveToFileIngr(){
         try {
             String json = new ObjectMapper().writeValueAsString(ingredientsMap);
-            fileService.saveToFile(json);
+            filesService.saveToFileIngr(json);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
-    private void readFromFile(){
-       String json = fileService.readFromFile();
+    private void readFromFileIngr(){
+        String json = filesService.readFromFileIngr();
         try {
-            new ObjectMapper().readValue(json, new TypeReference<TreeMap<Integer, LinkedHashMap>>() {
+            ingredientsMap = new ObjectMapper().readValue(json, new TypeReference<Map<Integer, Ingredients>>() {
             });
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-
+    }
+    public static Map<Integer, Ingredients> getIngredientsMap(){
+        return ingredientsMap;
     }
 }
-

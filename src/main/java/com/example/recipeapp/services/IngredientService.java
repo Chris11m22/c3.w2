@@ -2,11 +2,18 @@ package com.example.recipeapp.services;
 
 import model.Ingredients;
 
+import java.util.Map;
+
 public interface IngredientService {
 
-    public Ingredients addIngredient(Ingredients ingredients);
+    Ingredients putNewIngr(Ingredients ingredient);
+    Ingredients getIngr(Integer id);
 
-    Ingredients getIngredient(int id);
-    Ingredients editIngredient (int id, Ingredients ingredients);
-    Ingredients deleteIngredient (int id);
+    Map<Integer, Ingredients> getAllIngr();
+
+    Ingredients editIngr(Integer id, Ingredients ingredient);
+
+    boolean deleteIngr(Integer id);
+
+    boolean deleteIngr(Ingredients ingredients);
 }

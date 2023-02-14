@@ -1,15 +1,19 @@
 package model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@Data
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@EqualsAndHashCode
 public class Ingredients {
+    @NotBlank(message = "Name is mandatory")
     private String name;
-    private int count;
-    private String units;
+    @Positive
+    private int quantity;
+    private String measurement;
 
-    public Ingredients(Ingredients ingredients) {
-    }
 }

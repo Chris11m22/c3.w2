@@ -1,63 +1,113 @@
 package impl;
 
+import com.example.recipeapp.services.FilesService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import com.example.recipeapp.services.FileService;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-@Service
-
-public class FileServiceImpl implements FileService {
+public class FileServiceImpl implements FilesService {
     @Value("${path.to.data.file}")
     private String dataFilePath;
-    @Value("${name.of.data.file}")
-    private String dataFileName;
-    @Override
+    @Value("${name.of.ingredients.data.file}")
+    private String dataIngrFileName;
+    @Value("${name.of.recipe.data.file}")
+    private String dataRecFileName;
 
-    public boolean saveToFile(String json) {
+    @Override
+    public boolean saveToFileIngr(String json) {
         try {
-          cleanData();
-            Files.writeString(Path.of(dataFilePath), json);
+            cleanDataFileIngr();
+            Files.writeString(Path.of(dataFilePath, dataIngrFileName), json);
             return true;
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
     }
-@Override
-    public String readFromFile() {
-        try {
-            return Files.readString(Path.of(dataFilePath));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
-    }
+
     @Override
-    public File getDataFile(){
-        return new File(dataFilePath +"/" + dataFileName);
-    }
-    public Path createFile(String suffix ){
+    public boolean saveToFileRec(String json) {
         try {
-            return Files.createTempFile(Path.of(dataFilePath),"tempFile",suffix);
+            cleanDataFileRec();
+            Files.writeString(Path.of(dataFilePath, dataRecFileName), json);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    @Override
+    public String readFromFileIngr() {
+        try {
+            return Files.readString(Path.of(dataFilePath, dataIngrFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @Override
+    public String readFromFileRec() {
+        try {
+            return Files.readString(Path.of(dataFilePath, dataRecFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public File getDataIngrFile() {
+        return new File(dataFilePath + "/" + dataIngrFileName);
+    }
+
+    @Override
+    public File getDataRecFile() {
+        return new File(dataFilePath + "/" + dataRecFileName);
+    }
+
+    @Override
+    public Path createTempFile(String suffix) {
+        try {
+            return Files.createTempFile(Path.of(dataFilePath), "tempFile", suffix);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-@Override
-    public boolean cleanData() {
+
+    @Override
+    public boolean cleanDataFileIngr() {
         try {
-            Path path = Path.of(dataFilePath);
+            Path path = Path.of(dataFilePath, dataIngrFileName);
             Files.deleteIfExists(path);
             Files.createFile(path);
             return true;
-      } catch (IOException e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    @Override
+    public boolean cleanDataFileRec() {
+        try {
+            Path path = Path.of(dataFilePath, dataRecFileName);
+            Files.deleteIfExists(path);
+            Files.createFile(path);
+            return true;
+        } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
     }
 
 }
+

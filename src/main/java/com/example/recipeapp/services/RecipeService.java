@@ -2,12 +2,23 @@ package com.example.recipeapp.services;
 
 import model.Recipe;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Map;
+
 public interface RecipeService {
 
 
-  public Recipe addRecipe(Recipe recipe);
+  int putNewRecipe(Recipe recipe);
+  Recipe getRecipe(int numberRecipe);
 
-    Recipe getRecipe(int id);
-    Recipe editRecipe (int id, Recipe newRecipe);
-    Recipe deleteRecipe (int counter);
+  Map<Integer, Recipe> getAllRecipes();
+
+//    Recipe getRecipeByIdIngr(int id);
+
+  Recipe editRecipe(int id, Recipe recipe);
+
+  Path getAllRecFile() throws IOException;
+
+  boolean deleteRecipe(int id);
 }
