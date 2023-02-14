@@ -1,4 +1,4 @@
-package com.example.recipeapp.controllers;
+package controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import model.Recipe;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.recipeapp.services.RecipeService;
+import services.RecipeService;
 
 import javax.validation.Valid;
 import java.util.Map;

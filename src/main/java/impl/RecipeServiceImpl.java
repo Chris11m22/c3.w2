@@ -1,15 +1,14 @@
 package impl;
 
-import com.example.recipeapp.services.FilesService;
-import com.example.recipeapp.services.IngredientService;
+import services.FilesService;
+import services.IngredientService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Ingredients;
 import model.Recipe;
 import org.springframework.stereotype.Service;
-import com.example.recipeapp.services.FilesService;
-import com.example.recipeapp.services.RecipeService;
+import services.RecipeService;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -19,7 +18,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {

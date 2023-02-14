@@ -1,7 +1,7 @@
-package com.example.recipeapp.controllers;
+package controllers;
 
-import com.example.recipeapp.services.FilesService;
-import com.example.recipeapp.services.RecipeService;
+import services.FilesService;
+import services.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

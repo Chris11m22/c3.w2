@@ -1,13 +1,14 @@
 package impl;
 
-import com.example.recipeapp.services.FilesService;
+import services.FilesService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
+@Service
 public class FileServiceImpl implements FilesService {
     @Value("${path.to.data.file}")
     private String dataFilePath;

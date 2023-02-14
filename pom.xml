@@ -8,7 +8,7 @@
         <version>2.7.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>me.sky</groupId>
     <artifactId>RecipeApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>RecipeApp</name>
@@ -31,11 +31,16 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency> 
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
@@ -49,16 +54,14 @@
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.13</version>
         </dependency>
-
-
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -75,5 +78,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

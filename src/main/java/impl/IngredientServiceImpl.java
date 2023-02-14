@@ -5,14 +5,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Ingredients;
 import org.springframework.stereotype.Service;
-import com.example.recipeapp.services.FilesService;
-import com.example.recipeapp.services.IngredientService;
+import services.FilesService;
+import services.IngredientService;
 
 import javax.annotation.PostConstruct;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.TreeMap;
 
 @Service
 public class IngredientServiceImpl implements IngredientService {
