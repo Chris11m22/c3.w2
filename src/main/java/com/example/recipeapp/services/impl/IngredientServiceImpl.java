@@ -1,12 +1,12 @@
-package services.impl;
+package com.example.recipeapp.services.impl;
 
-import services.IngredientService;
+import com.example.recipeapp.services.IngredientService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.Ingredients;
+import com.example.recipeapp.model.Ingredients;
 import org.springframework.stereotype.Service;
-import services.FilesService;
+import com.example.recipeapp.services.FilesService;
 
 import javax.annotation.PostConstruct;
 import java.util.LinkedHashMap;
