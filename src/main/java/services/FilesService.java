@@ -1,4 +1,4 @@
-package com.example.recipeapp.services;
+package services;
 
 import java.io.File;
 import java.nio.file.Path;

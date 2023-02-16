@@ -1,6 +1,6 @@
-package com.example.recipeapp.controllers;
+package controllers;
 
-import com.example.recipeapp.services.IngredientService;
+import services.IngredientService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import com.example.recipeapp.model.Ingredients;
+import model.Ingredients;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
