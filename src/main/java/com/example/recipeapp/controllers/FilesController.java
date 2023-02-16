@@ -1,7 +1,7 @@
-package controllers;
+package com.example.recipeapp.controllers;
 
-import services.FilesService;
-import services.RecipeService;
+import com.example.recipeapp.services.FilesService;
+import com.example.recipeapp.services.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -9,8 +9,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import model.Ingredients;
-import model.Recipe;
+import com.example.recipeapp.model.Ingredients;
+import com.example.recipeapp.model.Recipe;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;

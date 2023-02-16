@@ -1,6 +1,6 @@
-package impl;
+package com.example.recipeapp.services.impl;
 
-import services.FilesService;
+import com.example.recipeapp.services.FilesService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

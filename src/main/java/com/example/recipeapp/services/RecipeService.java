@@ -1,6 +1,6 @@
-package services;
+package com.example.recipeapp.services;
 
-import model.Recipe;
+import com.example.recipeapp.model.Recipe;
 
 import java.io.IOException;
 import java.nio.file.Path;
