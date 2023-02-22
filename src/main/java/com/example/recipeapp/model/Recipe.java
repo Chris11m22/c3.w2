@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode
 public class Recipe {
-    @NotBlank
+    @NotBlank (message = "name is mandatory")
     private String name;
     @Positive
     private int time;

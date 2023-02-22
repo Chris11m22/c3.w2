@@ -10,7 +10,7 @@ import javax.validation.constraints.Positive;
 @Getter
 @EqualsAndHashCode
 public class Ingredients {
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "name is mandatory")
     private String name;
     @Positive
     private int quantity;

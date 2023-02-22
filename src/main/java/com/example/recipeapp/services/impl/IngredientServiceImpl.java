@@ -51,7 +51,7 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public Ingredients editIngr(Integer id, Ingredients ingredient){
         if (!ingredientsMap.containsKey(id)) {
-            throw new NoSuchElementException("Ингредиент с данным id не найден");
+            throw new NoSuchElementException("Ингредиент с таким id не найден");
         }
         ingredientsMap.put(id, ingredient);
         saveToFileIngr();

@@ -26,7 +26,7 @@ import java.nio.file.Path;
 
     @RestController
     @RequestMapping("/files")
-    @Tag(name = "ФАЙЛЫ", description = "CRUD-опереации и другие эндпоинты для работы с файлами рецептов")
+    @Tag(name = "Файлы", description = "CRUD-опереации и другие эндпоинты для работы с файлами рецептов")
     public class FilesController {
         private final FilesService filesService;
         private final RecipeService recipeService;

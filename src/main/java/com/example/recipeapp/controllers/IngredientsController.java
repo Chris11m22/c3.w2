@@ -20,7 +20,7 @@ import java.util.Map;
 
 @RestController
     @RequestMapping("/ingredient")
-    @Tag(name = "ИНГРЕДИЕНТЫ", description = "CRUD-опереации и другие эндпоинты для работы с ингредиентами")
+    @Tag(name = "Ингридиенты", description = "CRUD-опереации и другие эндпоинты для работы с ингредиентами")
     public class IngredientsController {
         private final IngredientService ingredientService;
 
