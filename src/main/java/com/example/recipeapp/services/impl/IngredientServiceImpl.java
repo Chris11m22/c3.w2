@@ -24,32 +24,32 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @PostConstruct
-    private void init(){
+    private void init() {
         readFromFileIngr();
     }
 
     @Override
     public Ingredients putNewIngr(Ingredients ingredient) {
-        ingredientsMap.put(idIngr++,ingredient);
+        ingredientsMap.put(idIngr++, ingredient);
         saveToFileIngr();
         return ingredient;
     }
 
     @Override
     public Ingredients getIngr(Integer id) {
-        if(ingredientsMap.get(id) != null){
+        if (ingredientsMap.get(id) != null) {
             return ingredientsMap.get(id);
         }
         return null;
     }
 
     @Override
-    public Map<Integer, Ingredients> getAllIngr(){
+    public Map<Integer, Ingredients> getAllIngr() {
         return ingredientsMap;
     }
 
     @Override
-    public Ingredients editIngr(Integer id, Ingredients ingredient){
+    public Ingredients editIngr(Integer id, Ingredients ingredient) {
         if (!ingredientsMap.containsKey(id)) {
             throw new NoSuchElementException("Ингредиент с данным id не найден");
         }
@@ -59,25 +59,25 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public boolean deleteIngr(Integer id){
-        if(ingredientsMap.containsKey(id)){
+    public boolean deleteIngr(Integer id) {
+        if (ingredientsMap.containsKey(id)) {
             ingredientsMap.remove(id);
             saveToFileIngr();
-            return true;
         }
-        return false;
+        return true;
+
     }
+
     @Override
-    public boolean deleteIngr(Ingredients ingredients){
-        if(ingredientsMap.containsValue(ingredients)){
-            for (Map.Entry<Integer, Ingredients>entry : ingredientsMap.entrySet()) {
+    public boolean deleteIngr(Ingredients ingredients) {
+        if (ingredientsMap.containsValue(ingredients)) {
+            for (Map.Entry<Integer, Ingredients> entry : ingredientsMap.entrySet()) {
                 Integer id = entry.getKey();
                 ingredientsMap.remove(id);
                 saveToFileIngr();
             }
-            return true;
         }
-        return false;
+        return true;
     }
 
     private void saveToFileIngr(){

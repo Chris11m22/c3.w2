@@ -14,8 +14,6 @@ public interface RecipeService {
 
   Map<Integer, Recipe> getAllRecipes();
 
-//    Recipe getRecipeByIdIngr(int id);
-
   Recipe editRecipe(int id, Recipe recipe);
 
   Path getAllRecFile() throws IOException;
