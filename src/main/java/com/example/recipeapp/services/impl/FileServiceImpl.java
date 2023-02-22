@@ -28,8 +28,6 @@ public class FileServiceImpl implements FilesService {
             return false;
         }
     }
-
-
     @Override
     public boolean saveToFileRec(String json) {
         try {
